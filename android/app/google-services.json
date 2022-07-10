@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "59297853852",
+    "project_id": "first-aid-c9c9f",
+    "storage_bucket": "first-aid-c9c9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59297853852:android:e14c9d05c7c4ede85b1859",
+        "android_client_info": {
+          "package_name": "com.example.flutter_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59297853852-kq1jvbiopo4po0k5gdj1a8u61902qf8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrHCRFRLfkq8pUIPZ41uQa3gRXYLBL9UM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59297853852-kq1jvbiopo4po0k5gdj1a8u61902qf8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "59297853852-1m16mlfd8u4lkc288oco8m4ggmv74o83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tech.first-aid.quoteapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59297853852:android:78687c4f11b4cb3b5b1859",
+        "android_client_info": {
+          "package_name": "tech.firstaid.quoteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59297853852-kq1jvbiopo4po0k5gdj1a8u61902qf8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrHCRFRLfkq8pUIPZ41uQa3gRXYLBL9UM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59297853852-kq1jvbiopo4po0k5gdj1a8u61902qf8n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "59297853852-1m16mlfd8u4lkc288oco8m4ggmv74o83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tech.first-aid.quoteapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
