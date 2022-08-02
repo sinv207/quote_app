@@ -36,7 +36,8 @@ target 'Runner' do
   # firestore config - start 
   # docs: https://firebase.flutter.dev/docs/firestore/overview/
   # [Issue] - CocoaPods could not find compatible versions for pod "cloud_firestore"
-  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '8.15.0'
+  # pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '8.15.0'
+  # pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '9.2.0'
   # pod 'FirebaseAuth', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :tag => '8.15.0'
   # firestore config - end 
   use_frameworks!

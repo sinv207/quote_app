@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quote_app/pages/themes_page.dart';
 
 import 'firebase_options.dart';
 import 'pages/pages.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       //   primarySwatch: Colors.blue,
       // ),
       theme: ThemeData.dark(),
+      // home: const ThemesPage(),
       home: const MyHomePage(title: 'Flutter Demo Home quote3'),
     );
   }

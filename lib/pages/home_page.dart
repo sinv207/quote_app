@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quote_app/repositories/firebase_themes_repository.dart';
 
 import '../blocs/blocs.dart';
 import '../configs/configs.dart';
@@ -52,11 +53,29 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     console.log('🚀 ~ _MyHomePageState ~ Widgetbuild ~ context', context);
 
-    return BlocProvider(
-      create: (context) => QuotesBloc(
-          quotesRepository: FirebaseQuotesRepository(
-              user: const User(id: 'Dd5bq5V1pfxzgHtfzecX', name: '')))
-        ..add(QuotesFetched()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => QuotesBloc(
+              quotesRepository: FirebaseQuotesRepository(
+                  // TODO: replace by real user
+                  user: const User(
+            id: 'Dd5bq5V1pfxzgHtfzecX',
+            name: '',
+            userName: '',
+          )))
+            ..add(QuotesFetched()),
+        ),
+        BlocProvider(
+          create: (context) => ThemesBloc(
+            themesRepository: FirebaseThemesRepository(),
+          )
+            ..add(
+              const QuoteThemesFetched([]),
+            )
+            ..add(QuoteThemeLoaded()),
+        ),
+      ],
       child: Scaffold(
         // appBar: AppBar(
         //   title: Text(widget.title),
