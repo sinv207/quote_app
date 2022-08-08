@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quote_app/pages/new_quote_page.dart';
 import 'package:quote_app/repositories/firebase_themes_repository.dart';
 
 import '../blocs/blocs.dart';
@@ -77,9 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text(widget.title),
-        // ),
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+          child: const HomeAppBar(),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: const HomeFloatButtons(),
+
         body: Center(
           child: BlocBuilder<QuotesBloc, QuotesState>(
             builder: (context, state) {
@@ -104,6 +111,108 @@ class _MyHomePageState extends State<MyHomePage> {
         //   child: const Icon(Icons.add),
         // ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
+    );
+  }
+}
+
+class HomeFloatButtons extends StatelessWidget {
+  const HomeFloatButtons({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black38,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+            onPressed: () async {
+              final result = await showModalBottomSheet(
+                context: context,
+                // Remove default color to show border radius
+                backgroundColor: Colors.transparent,
+                builder: (BuildContext context) => Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                  ),
+                  height: 360,
+                  child: NewQuotePage(),
+                ),
+              );
+              if (result != null) {
+                // Do something...
+                print((result as Quote).toString());
+              }
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.0),
+              child: Icon(Icons.create_rounded),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black38,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+            onPressed: () {},
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.0),
+              child: Icon(Icons.person_rounded),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeAppBar extends StatelessWidget {
+  const HomeAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      // title: Text(widget.title),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black38,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100.0),
+              ),
+            ),
+            onPressed: () {},
+            child: Row(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: Icon(Icons.workspace_premium_rounded),
+                ),
+                Text('Try for free'),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
