@@ -29,3 +29,11 @@ class FavoriteQuoteUpdated extends QuotesEvent {
   @override
   List<Object> get props => [quoteId, flag];
 }
+
+class QuotesAdded extends QuotesEvent {
+  final Quote quote;
+
+  const QuotesAdded(this.quote);
+  @override
+  List<Object> get props => [quote];
+}

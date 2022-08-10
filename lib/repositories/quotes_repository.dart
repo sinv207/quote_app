@@ -13,6 +13,8 @@ abstract class QuotesRepository {
   // Future<void> updateTodo(Quote quote);
   // Future<List<Quote>> fetchQuotes();
 
+  Future<void> addNewQuote(Quote quote);
+
   Future<void> updateFavorite(String quoteId, bool flag);
 
   Future<List<Favorite>> fetchFavorites();

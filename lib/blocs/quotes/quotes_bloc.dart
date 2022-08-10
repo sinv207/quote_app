@@ -17,6 +17,7 @@ class QuotesBloc extends Bloc<QuotesEvent, QuotesState> {
         super(const QuotesState.initial()) {
     on<QuotesFetched>(_quotesFetched);
     on<QuotesUpdated>(_quotesUpdated);
+    on<QuotesAdded>(_quotesAdded);
     on<FavoriteQuoteUpdated>(_favoritesUpdated);
 
     // _quotesSubscription.cancel();
@@ -76,5 +77,9 @@ class QuotesBloc extends Bloc<QuotesEvent, QuotesState> {
       status: BlocStatus.success,
       favorites: Map.of(state.favorites),
     ));
+  }
+
+  FutureOr<void> _quotesAdded(QuotesAdded event, Emitter<QuotesState> emit) {
+    _quotesRepository.addNewQuote(event.quote);
   }
 }

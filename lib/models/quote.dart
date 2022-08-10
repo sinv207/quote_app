@@ -27,7 +27,7 @@ class Quote extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'quote': text,
+      'text': text,
       'author': author,
     };
   }

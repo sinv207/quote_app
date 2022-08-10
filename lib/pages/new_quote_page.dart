@@ -17,6 +17,15 @@ class _NewQuotePageState extends State<NewQuotePage> {
   String get quote => _quoteController.text;
   String get author => _authorController.text;
 
+  final FocusNode _quoteFocusNode = FocusNode();
+  final FocusNode _authorFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    _quoteFocusNode.requestFocus();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -39,6 +48,7 @@ class _NewQuotePageState extends State<NewQuotePage> {
                 hintText: 'Enter your quote here',
               ),
               controller: _quoteController,
+              focusNode: _quoteFocusNode,
             ),
             const SizedBox(height: 16),
             TextField(
@@ -47,8 +57,10 @@ class _NewQuotePageState extends State<NewQuotePage> {
                 hintText: 'Author (optional)',
               ),
               controller: _authorController,
+              focusNode: _authorFocusNode,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
+
             Row(
               children: [
                 Expanded(

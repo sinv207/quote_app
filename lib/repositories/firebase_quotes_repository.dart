@@ -18,9 +18,14 @@ class FirebaseQuotesRepository implements QuotesRepository {
 
   @override
   Stream<List<Quote>> quotes() {
-    return _quotesCollection.snapshots().map((snapshot) {
+    return _quotesCollection
+        // TODO: sort by user experiences
+        .orderBy('created_at', descending: true)
+        .snapshots()
+        .map((snapshot) {
+      // doc.data()..addAll({'id': doc.id})
       return snapshot.docs
-          .map((doc) => Quote.fromJson(doc.data()..addAll({'id': doc.id})))
+          .map((doc) => Quote.fromJson({'id': doc.id, ...doc.data()}))
           .toList();
     });
   }
@@ -30,6 +35,11 @@ class FirebaseQuotesRepository implements QuotesRepository {
     _favoritesCollection
         .doc('${_user.id}_$quoteId')
         .set({'is_favorite': flag, 'user': _user.id});
+
+// update
+    // _quotesCollection.doc(quoteId).update({
+    //   'created_at': FieldValue.serverTimestamp(),
+    // });
   }
 
   @override
@@ -48,8 +58,18 @@ class FirebaseQuotesRepository implements QuotesRepository {
   Future<List<Favorite>> fetchFavorites() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await _favoritesCollection.where('user', isEqualTo: _user.id).get();
+    // doc.data()..addAll({'id': doc.id})
     return snapshot.docs
-        .map((doc) => Favorite.fromMap(doc.data()..addAll({'id': doc.id})))
+        .map((doc) => Favorite.fromMap({'id': doc.id, ...doc.data()}))
         .toList();
+  }
+
+  @override
+  Future<void> addNewQuote(Quote quote) async {
+    _quotesCollection.add({
+      'text': quote.text,
+      'author': quote.author,
+      'created_at': FieldValue.serverTimestamp(),
+    });
   }
 }
